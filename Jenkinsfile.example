@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        VM_HOST = credentials('go-reserve-vm-host')
+        APP_PORT = '8081'
+        APP_NAME = 'go_reserve_app'
+        IMAGE_NAME = 'go_reserve_image'
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+            }
+        }
+
+        stage('Transfer Image') {
+            steps {
+                sh "docker save ${IMAGE_NAME}:${IMAGE_TAG} | gzip > image.tar.gz"
+                sshagent(['go-reserve-vm-ssh']) {
+                    sh 'scp image.tar.gz deploy@${VM_HOST}:/tmp/'
+                }
+            }
+        }
+
+        stage('Deploy on VM') {
+            steps {
+                sshagent(['go-reserve-vm-ssh']) {
+                    sh '''
+                        ssh deploy@${VM_HOST} "
+                            docker load < /tmp/image.tar.gz
+                            docker stop ${APP_NAME} || true
+                            docker rm ${APP_NAME} || true
+                            docker run -d \\
+                                --name ${APP_NAME} \\
+                                --env-file /home/deploy/.env \\
+                                --restart unless-stopped \\
+                                -p ${APP_PORT}:3000 \\
+                                ${IMAGE_NAME}:${IMAGE_TAG}
+                            docker exec ${APP_NAME} bunx prisma migrate deploy
+                        "
+                    '''
+                }
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh 'curl --fail --retry 10 --retry-delay 3 http://${VM_HOST}:${APP_PORT}'
+            }
+        }
+    }
+
+    post {
+        success { echo 'Deployment succeeded.' }
+        failure { echo 'Deployment failed.' }
+    }
+}
