@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Go Reserve runtime and delivery architecture</title>
+  <desc id="desc">Student and admin users access a TanStack Start application backed by server functions, Prisma, PostgreSQL and session auth, while Jenkins builds and deploys a Docker image to a remote VM.</desc>
+  <rect width="1200" height="430" fill="#0d1117"/>
+  <style>.b{fill:#161b22;stroke:#58a6ff;stroke-width:2;rx:14}.g{fill:#161b22;stroke:#3fb950;stroke-width:2;rx:14}.o{fill:#161b22;stroke:#d29922;stroke-width:2;rx:14}.t{fill:#f0f6fc;font:600 18px system-ui,-apple-system,Segoe UI,sans-serif}.s{fill:#8b949e;font:14px system-ui,-apple-system,Segoe UI,sans-serif}.l{stroke:#8b949e;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8b949e"/></marker></defs>
+  <text x="40" y="42" class="t">Go Reserve — application runtime + delivery pipeline</text>
+  <text x="40" y="67" class="s">Derived from retained application source, Prisma schema, Docker and sanitized Jenkins pipeline</text>
+  <rect x="45" y="120" width="170" height="90" class="b"/><text x="78" y="155" class="t">Student / Admin</text><text x="82" y="180" class="s">browser session</text>
+  <rect x="270" y="120" width="190" height="90" class="g"/><text x="302" y="155" class="t">TanStack Start</text><text x="304" y="180" class="s">React + server fns</text>
+  <rect x="515" y="95" width="180" height="90" class="b"/><text x="548" y="130" class="t">Auth / Session</text><text x="550" y="155" class="s">bcrypt + session</text>
+  <rect x="515" y="220" width="180" height="90" class="b"/><text x="550" y="255" class="t">Reservations</text><text x="542" y="280" class="s">overlap checks</text>
+  <rect x="750" y="150" width="150" height="90" class="o"/><text x="790" y="185" class="t">Prisma</text><text x="778" y="210" class="s">data access</text>
+  <rect x="955" y="150" width="180" height="90" class="o"/><text x="990" y="185" class="t">PostgreSQL</text><text x="984" y="210" class="s">persistent state</text>
+  <rect x="270" y="330" width="170" height="70" class="b"/><text x="315" y="360" class="t">Jenkins</text><text x="298" y="383" class="s">build + verify</text>
+  <rect x="515" y="330" width="170" height="70" class="g"/><text x="563" y="360" class="t">Docker</text><text x="547" y="383" class="s">image artifact</text>
+  <rect x="760" y="330" width="190" height="70" class="g"/><text x="812" y="360" class="t">Remote VM</text><text x="798" y="383" class="s">container runtime</text>
+  <path d="M215 165 H270" class="l"/><path d="M460 145 H515" class="l"/><path d="M460 185 C490 210 500 250 515 260" class="l"/><path d="M695 140 C720 150 730 170 750 180" class="l"/><path d="M695 260 C720 245 730 220 750 210" class="l"/><path d="M900 195 H955" class="l"/>
+  <path d="M440 365 H515" class="l"/><path d="M685 365 H760" class="l"/>
+</svg>
