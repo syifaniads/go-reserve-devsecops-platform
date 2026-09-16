@@ -13,6 +13,12 @@ The original team work combined application engineering with deployment automati
 
 > **Attribution:** this was a collaborative team project. This personal repository does not claim sole authorship of the original application. Original Git history remains linked in [SOURCE_EVIDENCE.md](./SOURCE_EVIDENCE.md). Some work was also performed from shared development machines, so Git author metadata alone is not treated as a complete record of team contribution.
 
+<p align="center">
+  <img src="docs/assets/runtime-and-delivery.svg" alt="Go Reserve runtime and delivery architecture" width="1000" />
+</p>
+
+> **Visual provenance:** the diagram is derived from the retained application source, Prisma schema, Docker packaging, session/auth code, reservation service, and sanitized Jenkins deployment flow. It is not a fabricated production topology.
+
 ## What a reviewer can inspect quickly
 
 | Area | Evidence |
